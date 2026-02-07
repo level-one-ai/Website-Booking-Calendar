@@ -32,15 +32,18 @@
         }
 
         .form-left-panel {
-            background: #1a1a1a;
+            background: linear-gradient(145deg, #1e1e1e, #161616);
             border-radius: 16px;
             padding: 18px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            border: 2px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05),
+                0 0 40px rgba(255, 140, 0, 0.05);
         }
 
         .form-logo-container {
@@ -53,14 +56,17 @@
         }
 
         .form-center-panel {
-            background: #1a1a1a;
+            background: linear-gradient(145deg, #1e1e1e, #161616);
             border-radius: 16px;
             padding: 30px 35px;
             display: flex;
             flex-direction: column;
             overflow: visible;
-            border: 2px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05),
+                0 0 40px rgba(255, 140, 0, 0.05);
         }
 
         .form-header {
@@ -116,20 +122,26 @@
         .form-input {
             width: 100%;
             padding: 11px 14px;
-            background: #0a0a0a;
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            background: linear-gradient(145deg, #0d0d0d, #080808);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 8px;
             color: #ffffff;
             font-size: 14px;
             transition: all 0.3s ease;
             font-weight: 400;
+            box-shadow: 
+                0 2px 8px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.02);
         }
 
         .form-input:focus {
             outline: none;
-            border-color: rgba(255, 255, 255, 0.35);
-            background: #0d0d0d;
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 140, 0, 0.3);
+            background: linear-gradient(145deg, #101010, #0a0a0a);
+            box-shadow: 
+                0 0 0 3px rgba(255, 140, 0, 0.05),
+                0 2px 8px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.03);
         }
 
         .form-input::placeholder {
@@ -138,14 +150,17 @@
         }
 
         .form-right-panel {
-            background: #1a1a1a;
+            background: linear-gradient(145deg, #1e1e1e, #161616);
             border-radius: 16px;
             padding: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05),
+                0 0 40px rgba(255, 140, 0, 0.05);
         }
 
         .next-btn {
@@ -194,7 +209,7 @@
         }
 
         .left-panel {
-            background: #1a1a1a;
+            background: linear-gradient(145deg, #1e1e1e, #161616);
             border-radius: 16px;
             padding: 18px;
             display: flex;
@@ -203,8 +218,11 @@
             overflow-y: auto;
             height: 100%;
             max-height: 500px;
-            border: 2px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05),
+                0 0 40px rgba(255, 140, 0, 0.05);
         }
 
         .logo-container {
@@ -250,18 +268,58 @@
         .info-item {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 8px;
-            background: #0a0a0a;
+            gap: 12px;
+            padding: 8px 12px;
+            background: linear-gradient(145deg, #0d0d0d, #080808);
             border-radius: 8px;
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 
+                0 2px 8px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.02);
         }
 
         .info-emoji {
-            font-size: 16px;
-            width: 28px;
-            text-align: center;
-            filter: grayscale(100%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ff8c00;
+            animation: blink 2s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+                box-shadow: 0 0 8px rgba(255, 140, 0, 0.8);
+            }
+            50% {
+                opacity: 0.3;
+                box-shadow: 0 0 3px rgba(255, 140, 0, 0.3);
+            }
+        }
+
+        .info-item:nth-child(2) .info-emoji {
+            animation-delay: 0.3s;
+        }
+
+        .info-item:nth-child(3) .info-emoji {
+            animation-delay: 0.6s;
+        }
+
+        .info-item:nth-child(4) .info-emoji {
+            animation-delay: 0.9s;
+        }
+
+        .info-item:nth-child(5) .info-emoji {
+            animation-delay: 1.2s;
+        }
+
+        .info-item:nth-child(6) .info-emoji {
+            animation-delay: 1.5s;
+        }
+
+        .info-item:nth-child(7) .info-emoji {
+            animation-delay: 1.8s;
         }
 
         .info-text {
@@ -272,15 +330,18 @@
         }
 
         .calendar-panel {
-            background: #1a1a1a;
+            background: linear-gradient(145deg, #1e1e1e, #161616);
             border-radius: 16px;
             padding: 15px;
             display: flex;
             flex-direction: column;
             overflow: hidden;
             height: 100%;
-            border: 2px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05),
+                0 0 40px rgba(255, 140, 0, 0.05);
         }
 
         .calendar-header {
@@ -302,20 +363,26 @@
         }
 
         .nav-btn {
-            background: #0a0a0a;
+            background: linear-gradient(145deg, #0d0d0d, #080808);
             color: white;
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             width: 32px;
             height: 32px;
             border-radius: 8px;
             cursor: pointer;
             font-size: 16px;
             transition: all 0.2s;
+            box-shadow: 
+                0 2px 8px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.02);
         }
 
         .nav-btn:hover {
-            background: #ff8c00;
+            background: linear-gradient(135deg, #ff8c00 0%, #ff7700 100%);
             border-color: #ff8c00;
+            box-shadow: 
+                0 4px 12px rgba(255, 140, 0, 0.4),
+                0 0 20px rgba(255, 140, 0, 0.2);
         }
 
         .weekdays {
@@ -345,44 +412,63 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #0a0a0a;
+            background: linear-gradient(145deg, #0d0d0d, #080808);
             color: white;
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s;
             font-size: 10px;
             font-weight: 500;
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             max-height: 42px;
+            box-shadow: 
+                0 2px 8px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.02);
         }
 
         .calendar-day:hover {
-            background: #ff8c00;
+            background: linear-gradient(135deg, #ff8c00 0%, #ff7700 100%);
             border-color: #ff8c00;
+            box-shadow: 
+                0 4px 12px rgba(255, 140, 0, 0.4),
+                0 0 20px rgba(255, 140, 0, 0.2);
         }
 
         .calendar-day.disabled {
             color: #555;
             cursor: not-allowed;
-            border-color: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.03);
+            box-shadow: 
+                0 1px 4px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.01);
         }
 
         .calendar-day.disabled:hover {
-            background: #0a0a0a;
-            border-color: rgba(255, 255, 255, 0.08);
+            background: linear-gradient(145deg, #0d0d0d, #080808);
+            border-color: rgba(255, 255, 255, 0.03);
+            box-shadow: 
+                0 1px 4px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.01);
         }
 
         .calendar-day.today {
             border: 2px solid #ff8c00;
+            box-shadow: 
+                0 2px 8px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.02),
+                0 0 20px rgba(255, 140, 0, 0.15);
         }
 
         .calendar-day.selected {
-            background: #ff8c00;
+            background: linear-gradient(135deg, #ff8c00 0%, #ff7700 100%);
             border-color: #ff8c00;
+            box-shadow: 
+                0 4px 12px rgba(255, 140, 0, 0.4),
+                0 0 20px rgba(255, 140, 0, 0.2);
         }
 
         .right-panel {
-            background: #1a1a1a;
+            background: linear-gradient(145deg, #1e1e1e, #161616);
             border-radius: 16px;
             padding: 18px;
             display: flex;
@@ -390,8 +476,11 @@
             overflow-y: auto;
             height: 100%;
             max-height: 500px;
-            border: 2px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05),
+                0 0 40px rgba(255, 140, 0, 0.05);
         }
 
         .time-header {
@@ -402,7 +491,7 @@
             text-align: center;
             position: sticky;
             top: 0;
-            background: #1a1a1a;
+            background: linear-gradient(145deg, #1e1e1e, #161616);
             padding: 5px 0;
             z-index: 10;
         }
@@ -417,26 +506,35 @@
 
         .time-slot {
             padding: 8px;
-            background: #0a0a0a;
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            background: linear-gradient(145deg, #0d0d0d, #080808);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 8px;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s;
             font-size: 12px;
             color: #ffffff;
+            box-shadow: 
+                0 2px 8px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.02);
         }
 
         .time-slot:hover {
-            background: #ff8c00;
+            background: linear-gradient(135deg, #ff8c00 0%, #ff7700 100%);
             border-color: #ff8c00;
             color: white;
+            box-shadow: 
+                0 4px 12px rgba(255, 140, 0, 0.4),
+                0 0 20px rgba(255, 140, 0, 0.2);
         }
 
         .time-slot.selected {
-            background: #ff8c00;
+            background: linear-gradient(135deg, #ff8c00 0%, #ff7700 100%);
             border-color: #ff8c00;
             color: white;
+            box-shadow: 
+                0 4px 12px rgba(255, 140, 0, 0.4),
+                0 0 20px rgba(255, 140, 0, 0.2);
         }
 
         .time-slot.disabled {
@@ -445,9 +543,12 @@
         }
 
         .time-slot.disabled:hover {
-            background: #0a0a0a;
-            border-color: rgba(255, 255, 255, 0.15);
+            background: linear-gradient(145deg, #0d0d0d, #080808);
+            border-color: rgba(255, 255, 255, 0.06);
             color: #ffffff;
+            box-shadow: 
+                0 2px 8px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.02);
         }
 
         .confirm-btn {
@@ -499,13 +600,16 @@
         }
 
         .modal-content {
-            background: #1a1a1a;
+            background: linear-gradient(145deg, #1e1e1e, #161616);
             border-radius: 16px;
             padding: 30px;
             max-width: 500px;
             width: 90%;
-            border: 2px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05),
+                0 0 60px rgba(255, 140, 0, 0.15);
             transform: scale(0.9);
             transition: transform 0.3s;
         }
@@ -533,9 +637,12 @@
             display: flex;
             justify-content: space-between;
             padding: 10px 15px;
-            background: #0a0a0a;
+            background: linear-gradient(145deg, #0d0d0d, #080808);
             border-radius: 8px;
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 
+                0 2px 8px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.02);
         }
 
         .modal-info-label {
@@ -774,32 +881,32 @@
             </div>
 
             <div class="info-item">
-                <span class="info-emoji">I</span>
+                <span class="info-emoji"></span>
                 <span class="info-text" id="clientName"></span>
             </div>
 
             <div class="info-item">
-                <span class="info-emoji">I</span>
+                <span class="info-emoji"></span>
                 <span class="info-text" id="clientEmail"></span>
             </div>
 
             <div class="info-item">
-                <span class="info-emoji">III</span>
+                <span class="info-emoji"></span>
                 <span class="info-text" id="clientPhone"></span>
             </div>
 
             <div class="info-item">
-                <span class="info-emoji">IV</span>
+                <span class="info-emoji"></span>
                 <span class="info-text" id="clientCompany"></span>
             </div>
 
             <div class="info-item">
-                <span class="info-emoji">V</span>
+                <span class="info-emoji"></span>
                 <span class="info-text" id="clientLocation"></span>
             </div>
 
             <div class="info-item" id="websiteItem" style="display: none;">
-                <span class="info-emoji">VI</span>
+                <span class="info-emoji"></span>
                 <span class="info-text" id="clientWebsite"></span>
             </div>
         </div>
