@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Your Kickoff Call - Level One</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #1a1a1a;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Form Page Styles */
+        .form-container {
+            display: grid;
+            grid-template-columns: 240px 1fr 240px;
+            gap: 20px;
+            max-width: 1050px;
+            width: 100%;
+            height: 500px;
+        }
+
+        .form-left-panel {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.04);
+        }
+
+        .form-logo-container {
+            width: 140px;
+            height: 161.54px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .form-center-panel {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 30px 35px;
+            display: flex;
+            flex-direction: column;
+            overflow: visible;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.04);
+        }
+
+        .form-header {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+
+        .form-subheader {
+            color: #999;
+            font-size: 13px;
+            margin-bottom: 24px;
+            text-align: center;
+            font-weight: 400;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 14px;
+        }
+
+        .form-row .form-group {
+            margin-bottom: 0;
+        }
+
+        .form-label {
+            display: block;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            font-size: 11px;
+        }
+
+        .form-label .optional {
+            color: #888;
+            font-weight: 400;
+            font-size: 10px;
+            text-transform: lowercase;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 11px 14px;
+            background: #0a0a0a;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-weight: 400;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.35);
+            background: #0d0d0d;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+        }
+
+        .form-input::placeholder {
+            color: #555;
+            font-weight: 300;
+        }
+
+        .form-right-panel {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.04);
+        }
+
+        .next-btn {
+            background: linear-gradient(135deg, #ff8c00 0%, #ff7700 100%);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 150px;
+            box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 13px;
+        }
+
+        .next-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #ffa500 0%, #ff8c00 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 140, 0, 0.4);
+        }
+
+        .next-btn:disabled {
+            background: linear-gradient(135deg, #333 0%, #2a2a2a 100%);
+            cursor: not-allowed;
+            opacity: 0.4;
+            box-shadow: none;
+        }
+
+        /* Calendar Page Styles - Updated to match form page */
+        .main-container {
+            display: none;
+            grid-template-columns: 240px 1fr 240px;
+            gap: 20px;
+            max-width: 1050px;
+            width: 100%;
+            height: 500px;
+        }
+
+        .main-container.active {
+            display: grid;
+        }
+
+        .left-panel {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow-y: auto;
+            height: 100%;
+            max-height: 500px;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.04);
+        }
+
+        .logo-container {
+            width: 140px;
+            height: 161.54px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hexagon-shape {
+            width: 140px;
+            height: 161.54px;
+            background-color: #000000;
+            position: relative;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        .hexagon-inner {
+            width: 134px;
+            height: 154.61px;
+            background-color: white;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05) translateX(-3px);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            background: #0a0a0a;
+            border-radius: 8px;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .info-emoji {
+            font-size: 16px;
+            width: 28px;
+            text-align: center;
+            filter: grayscale(100%);
+        }
+
+        .info-text {
+            font-size: 11px;
+            color: #ffffff;
+            flex: 1;
+            word-break: break-word;
+        }
+
+        .calendar-panel {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            height: 100%;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.04);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .month-year {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-btn {
+            background: #0a0a0a;
+            color: white;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: #ff8c00;
+            border-color: #ff8c00;
+        }
+
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-bottom: 5px;
+        }
+
+        .weekday {
+            text-align: center;
+            color: #999;
+            font-size: 9px;
+            font-weight: 600;
+            padding: 4px 2px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            flex: 1;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0a0a0a;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 10px;
+            font-weight: 500;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            max-height: 42px;
+        }
+
+        .calendar-day:hover {
+            background: #ff8c00;
+            border-color: #ff8c00;
+        }
+
+        .calendar-day.disabled {
+            color: #555;
+            cursor: not-allowed;
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .calendar-day.disabled:hover {
+            background: #0a0a0a;
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .calendar-day.today {
+            border: 2px solid #ff8c00;
+        }
+
+        .calendar-day.selected {
+            background: #ff8c00;
+            border-color: #ff8c00;
+        }
+
+        .right-panel {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            height: 100%;
+            max-height: 500px;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.04);
+        }
+
+        .time-header {
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            background: #1a1a1a;
+            padding: 5px 0;
+            z-index: 10;
+        }
+
+        .time-slots-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .time-slot {
+            padding: 8px;
+            background: #0a0a0a;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 12px;
+            color: #ffffff;
+        }
+
+        .time-slot:hover {
+            background: #ff8c00;
+            border-color: #ff8c00;
+            color: white;
+        }
+
+        .time-slot.selected {
+            background: #ff8c00;
+            border-color: #ff8c00;
+            color: white;
+        }
+
+        .time-slot.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .time-slot.disabled:hover {
+            background: #0a0a0a;
+            border-color: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+        }
+
+        .confirm-btn {
+            background: linear-gradient(135deg, #ff8c00 0%, #ff7700 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+        }
+
+        .confirm-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #ffa500 0%, #ff8c00 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 140, 0, 0.4);
+        }
+
+        .confirm-btn:disabled {
+            background: linear-gradient(135deg, #333 0%, #2a2a2a 100%);
+            cursor: not-allowed;
+            opacity: 0.4;
+            box-shadow: none;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.04);
+            transform: scale(0.9);
+            transition: transform 0.3s;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            color: #ff8c00;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal-info-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .modal-info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            background: #0a0a0a;
+            border-radius: 8px;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .modal-info-label {
+            color: #999;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .modal-info-value {
+            color: #ffffff;
+            font-size: 13px;
+            text-align: right;
+        }
+
+        .modal-exit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #ff8c00 0%, #ff7700 100%);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+        }
+
+        .modal-exit-btn:hover {
+            background: linear-gradient(135deg, #ffa500 0%, #ff8c00 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 140, 0, 0.4);
+        }
+
+        .thank-you-screen {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .thank-you-screen.active {
+            display: block;
+        }
+
+        .thank-you-logo {
+            width: 140px;
+            height: 161.54px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .thank-you-hexagon {
+            width: 140px;
+            height: 161.54px;
+            background-color: #000000;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        .thank-you-hexagon-inner {
+            width: 134px;
+            height: 154.61px;
+            background-color: white;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .thank-you-logo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05) translateX(-3px);
+        }
+
+        .thank-you-title {
+            color: #ff8c00;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .thank-you-message {
+            color: #ffffff;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .thank-you-note {
+            color: #999;
+            font-size: 14px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        @media (max-width: 900px) {
+            .form-container,
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                max-height: none;
+            }
+
+            .form-left-panel,
+            .form-right-panel {
+                display: none;
+            }
+
+            .form-center-panel {
+                border-radius: 16px;
+            }
+
+            .left-panel, .right-panel {
+                max-height: none;
+            }
+
+            .logo-container {
+                width: 160px;
+                height: 184.75px;
+            }
+
+            .hexagon-shape {
+                width: 160px;
+                height: 184.75px;
+            }
+
+            .hexagon-inner {
+                width: 154px;
+                height: 177.82px;
+            }
+
+            .next-btn {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .calendar-panel {
+                padding: 20px;
+            }
+
+            .left-panel, .right-panel {
+                padding: 20px;
+            }
+
+            .calendar-day {
+                font-size: 12px;
+                max-height: 45px;
+            }
+
+            .month-year {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Form Page -->
+    <div class="form-container" id="formPage">
+        <div class="form-left-panel">
+            <div class="form-logo-container">
+                <div class="hexagon-shape">
+                    <div class="hexagon-inner">
+                        <img src="https://github.com/level-one-ai/Level-One.Website-/blob/main/images/Whisk_krwz0utmjzjyjbtotqwywgtlxedo00smhjdmtqm%20(1).png?raw=true" alt="Level One Logo" class="logo-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-center-panel">
+            <h1 class="form-header">Client Information</h1>
+            <p class="form-subheader">Please fill out your details to schedule your kickoff call</p>
+            
+            <form id="clientForm">
+                <div class="form-group">
+                    <label class="form-label" for="formName">Name</label>
+                    <input type="text" id="formName" class="form-input" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="formEmail">Email</label>
+                        <input type="email" id="formEmail" class="form-input" placeholder="your.email@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="formPhone">Phone Number</label>
+                        <input type="tel" id="formPhone" class="form-input" placeholder="+1 (555) 123-4567" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="formCompany">Company Name</label>
+                    <input type="text" id="formCompany" class="form-input" placeholder="Your company name" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="formLocation">Location</label>
+                    <input type="text" id="formLocation" class="form-input" placeholder="City, Country" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="formWebsite">Website <span class="optional">(optional)</span></label>
+                    <input type="url" id="formWebsite" class="form-input" placeholder="https://www.example.com">
+                </div>
+            </form>
+        </div>
+
+        <div class="form-right-panel">
+            <button class="next-btn" id="nextBtn" disabled>Next</button>
+        </div>
+    </div>
+
+    <!-- Calendar Page -->
+    <div class="main-container" id="calendarPage">
+        <!-- Left Panel: Client Information -->
+        <div class="left-panel">
+            <div class="logo-container">
+                <div class="hexagon-shape">
+                    <div class="hexagon-inner">
+                        <img src="https://github.com/level-one-ai/Level-One.Website-/blob/main/images/Whisk_krwz0utmjzjyjbtotqwywgtlxedo00smhjdmtqm%20(1).png?raw=true" alt="Level One Logo" class="logo-image">
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <span class="info-emoji">I</span>
+                <span class="info-text" id="clientName"></span>
+            </div>
+
+            <div class="info-item">
+                <span class="info-emoji">I</span>
+                <span class="info-text" id="clientEmail"></span>
+            </div>
+
+            <div class="info-item">
+                <span class="info-emoji">III</span>
+                <span class="info-text" id="clientPhone"></span>
+            </div>
+
+            <div class="info-item">
+                <span class="info-emoji">IV</span>
+                <span class="info-text" id="clientCompany"></span>
+            </div>
+
+            <div class="info-item">
+                <span class="info-emoji">V</span>
+                <span class="info-text" id="clientLocation"></span>
+            </div>
+
+            <div class="info-item" id="websiteItem" style="display: none;">
+                <span class="info-emoji">VI</span>
+                <span class="info-text" id="clientWebsite"></span>
+            </div>
+        </div>
+
+        <!-- Center Panel: Calendar -->
+        <div class="calendar-panel">
+            <div class="calendar-header">
+                <h2 class="month-year" id="monthYear"></h2>
+                <div class="nav-buttons">
+                    <button class="nav-btn" id="prevBtn">‹</button>
+                    <button class="nav-btn" id="nextBtn2">›</button>
+                </div>
+            </div>
+
+            <div class="weekdays">
+                <div class="weekday">SUN</div>
+                <div class="weekday">MON</div>
+                <div class="weekday">TUE</div>
+                <div class="weekday">WED</div>
+                <div class="weekday">THU</div>
+                <div class="weekday">FRI</div>
+                <div class="weekday">SAT</div>
+            </div>
+
+            <div class="calendar-grid" id="calendarGrid"></div>
+        </div>
+
+        <!-- Right Panel: Time Selection -->
+        <div class="right-panel">
+            <div class="time-header" id="selectedDateDisplay">Select a date</div>
+            
+            <div class="time-slots-container">
+                <div class="time-slot" data-time="09:00">9:00am</div>
+                <div class="time-slot" data-time="09:30">9:30am</div>
+                <div class="time-slot" data-time="10:00">10:00am</div>
+                <div class="time-slot" data-time="10:30">10:30am</div>
+                <div class="time-slot" data-time="11:00">11:00am</div>
+                <div class="time-slot" data-time="11:30">11:30am</div>
+                <div class="time-slot" data-time="12:00">12:00pm</div>
+                <div class="time-slot" data-time="12:30">12:30pm</div>
+                <div class="time-slot" data-time="01:00">1:00pm</div>
+                <div class="time-slot" data-time="01:30">1:30pm</div>
+                <div class="time-slot" data-time="02:00">2:00pm</div>
+                <div class="time-slot" data-time="02:30">2:30pm</div>
+                <div class="time-slot" data-time="03:00">3:00pm</div>
+                <div class="time-slot" data-time="03:30">3:30pm</div>
+                <div class="time-slot" data-time="04:00">4:00pm</div>
+                <div class="time-slot" data-time="04:30">4:30pm</div>
+                <div class="time-slot" data-time="05:00">5:00pm</div>
+            </div>
+            
+            <button class="confirm-btn" id="confirmBtn" disabled>Confirm Booking</button>
+        </div>
+    </div>
+
+    <!-- Modal for Booking Confirmation -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <div id="confirmationSection">
+                <h2 class="modal-header">Kickoff Call Confirmed</h2>
+                <div class="modal-info-section">
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">Name:</span>
+                        <span class="modal-info-value" id="modalName"></span>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">Email:</span>
+                        <span class="modal-info-value" id="modalEmail"></span>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">Kickoff Date:</span>
+                        <span class="modal-info-value" id="modalNewDate"></span>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">Kickoff Time:</span>
+                        <span class="modal-info-value" id="modalNewTime"></span>
+                    </div>
+                </div>
+                <button class="modal-exit-btn" id="finishBtn">Finish</button>
+            </div>
+
+            <div class="thank-you-screen" id="thankYouSection">
+                <div class="thank-you-logo">
+                    <div class="thank-you-hexagon">
+                        <div class="thank-you-hexagon-inner">
+                            <img src="https://github.com/level-one-ai/Level-One.Website-/blob/main/images/Whisk_krwz0utmjzjyjbtotqwywgtlxedo00smhjdmtqm%20(1).png?raw=true" alt="Level One Logo" class="thank-you-logo-image">
+                        </div>
+                    </div>
+                </div>
+                <h2 class="thank-you-title">Thank You!</h2>
+                <p class="thank-you-message">
+                    We're excited to begin this journey with you! Your kickoff call is confirmed and we can't wait to dive into your project.
+                </p>
+                <p class="thank-you-note">
+                    You will receive a calendar invitation and email confirmation shortly. We'll send you a reminder before your scheduled kickoff time.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Client data storage
+        let clientData = {
+            name: '',
+            email: '',
+            phone: '',
+            company: '',
+            location: '',
+            website: ''
+        };
+
+        // Form validation
+        function validateForm() {
+            const name = document.getElementById('formName').value.trim();
+            const email = document.getElementById('formEmail').value.trim();
+            const phone = document.getElementById('formPhone').value.trim();
+            const company = document.getElementById('formCompany').value.trim();
+            const location = document.getElementById('formLocation').value.trim();
+            
+            const isValid = name && email && phone && company && location;
+            document.getElementById('nextBtn').disabled = !isValid;
+        }
+
+        // Add event listeners to form inputs
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('input', validateForm);
+        });
+
+        // Next button handler
+        document.getElementById('nextBtn').addEventListener('click', function() {
+            // Store client data
+            clientData.name = document.getElementById('formName').value.trim();
+            clientData.email = document.getElementById('formEmail').value.trim();
+            clientData.phone = document.getElementById('formPhone').value.trim();
+            clientData.company = document.getElementById('formCompany').value.trim();
+            clientData.location = document.getElementById('formLocation').value.trim();
+            clientData.website = document.getElementById('formWebsite').value.trim();
+
+            // Populate calendar page info panel
+            document.getElementById('clientName').textContent = clientData.name;
+            document.getElementById('clientEmail').textContent = clientData.email;
+            document.getElementById('clientPhone').textContent = clientData.phone;
+            document.getElementById('clientCompany').textContent = clientData.company;
+            document.getElementById('clientLocation').textContent = clientData.location;
+            
+            if (clientData.website) {
+                document.getElementById('clientWebsite').textContent = clientData.website;
+                document.getElementById('websiteItem').style.display = 'flex';
+            }
+
+            // Switch to calendar page
+            document.getElementById('formPage').style.display = 'none';
+            document.getElementById('calendarPage').classList.add('active');
+            
+            // Initialize calendar
+            renderCalendar();
+            updateTimeSelection();
+        });
+
+        // Calendar functionality
+        let currentDate = new Date();
+        let selectedDate = null;
+        let selectedTime = null;
+
+        function renderCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            
+            // Update header
+            document.getElementById('monthYear').textContent = currentDate.toLocaleDateString('en-US', {
+                month: 'long',
+                year: 'numeric'
+            });
+
+            // Clear grid
+            const grid = document.getElementById('calendarGrid');
+            grid.innerHTML = '';
+
+            // Get first day and last day of month
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const startDate = new Date(firstDay);
+            startDate.setDate(startDate.getDate() - firstDay.getDay());
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            // Generate calendar days
+            for (let i = 0; i < 42; i++) {
+                const date = new Date(startDate);
+                date.setDate(startDate.getDate() + i);
+
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = date.getDate();
+
+                const isCurrentMonth = date.getMonth() === month;
+                const isToday = date.toDateString() === today.toDateString();
+                const isPast = date < today;
+
+                if (!isCurrentMonth || isPast) {
+                    dayElement.classList.add('disabled');
+                } else {
+                    dayElement.addEventListener('click', () => {
+                        selectedDate = date;
+                        renderCalendar();
+                        updateTimeSelection();
+                    });
+                }
+
+                if (isToday) {
+                    dayElement.classList.add('today');
+                }
+
+                if (selectedDate && date.toDateString() === selectedDate.toDateString()) {
+                    dayElement.classList.add('selected');
+                }
+
+                grid.appendChild(dayElement);
+            }
+        }
+
+        function updateTimeSelection() {
+            const display = document.getElementById('selectedDateDisplay');
+            if (selectedDate) {
+                display.textContent = selectedDate.toLocaleDateString('en-US', {
+                    weekday: 'short',
+                    month: 'short',
+                    day: 'numeric'
+                });
+            } else {
+                display.textContent = 'Select a date';
+            }
+        }
+
+        // Time slot selection
+        const timeSlots = document.querySelectorAll('.time-slot');
+        const confirmBtn = document.getElementById('confirmBtn');
+        
+        timeSlots.forEach(slot => {
+            slot.addEventListener('click', function() {
+                if (!selectedDate) return;
+                
+                timeSlots.forEach(s => s.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedTime = this.dataset.time;
+                
+                // Enable confirm button when both date and time are selected
+                confirmBtn.disabled = false;
+            });
+        });
+
+        // Confirm booking and send to webhook
+        confirmBtn.addEventListener('click', async function() {
+            if (!selectedDate || !selectedTime) return;
+            
+            const formattedNewDate = selectedDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            });
+            
+            const bookingData = {
+                name: clientData.name,
+                email: clientData.email,
+                phone: clientData.phone,
+                company: clientData.company,
+                location: clientData.location,
+                website: clientData.website || '',
+                kickoffDate: formattedNewDate,
+                kickoffTime: selectedTime,
+                callBooking: 'Website',
+                timestamp: new Date().toISOString()
+            };
+            
+            try {
+                confirmBtn.disabled = true;
+                confirmBtn.textContent = 'Sending...';
+                
+                // Replace with your webhook URL
+                const response = await fetch('https://hook.eu2.make.com/ljg9pk80v0l6bons8zu4b7mrl0jhj5td', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(bookingData)
+                });
+                
+                if (response.ok) {
+                    // Show modal with booking information
+                    document.getElementById('modalName').textContent = bookingData.name;
+                    document.getElementById('modalEmail').textContent = bookingData.email;
+                    document.getElementById('modalNewDate').textContent = formattedNewDate;
+                    document.getElementById('modalNewTime').textContent = selectedTime;
+                    
+                    document.getElementById('modalOverlay').classList.add('active');
+                } else {
+                    throw new Error('Failed to send booking');
+                }
+            } catch (error) {
+                console.error('Error sending booking:', error);
+                confirmBtn.textContent = 'Error - Try Again';
+                confirmBtn.style.background = '#d32f2f';
+                
+                setTimeout(() => {
+                    confirmBtn.textContent = 'Confirm Booking';
+                    confirmBtn.style.background = '#ff8c00';
+                    confirmBtn.disabled = false;
+                }, 3000);
+            }
+        });
+
+        // Finish button handler
+        document.getElementById('finishBtn').addEventListener('click', function() {
+            // Hide confirmation section and show thank you screen
+            document.getElementById('confirmationSection').style.display = 'none';
+            document.getElementById('thankYouSection').classList.add('active');
+        });
+
+        // Navigation
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar();
+        });
+
+        document.getElementById('nextBtn2').addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar();
+        });
+    </script>
+</body>
+</html>
